@@ -6,7 +6,7 @@
  */
 import React, { Component } from "react";
 import queryString from "query-string";
-import api from "../utils/api";
+import {battle} from "../utils/api";
 import { Link } from "react-router-dom";
 import PlayerPreview from "./PlayerPreview";
 import Loading from './Loading'
@@ -67,7 +67,7 @@ export default class Results extends Component {
 
   componentDidMount() {
     const players = queryString.parse(this.props.location.search);
-    api.battle([players.playerOneName, players.playerTwoName]).then(results => {
+    battle([players.playerOneName, players.playerTwoName]).then(results => {
       if (!results) {
         return this.setState({
           error:

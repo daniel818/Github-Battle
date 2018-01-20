@@ -60,20 +60,19 @@ const sortPlayers = players => {
   });
 };
 
-module.exports = {
-  battle: async players => {
-    const data = await axios.all(players.map(getUserData));
+export async function battle(players) {
+  const data = await axios.all(players.map(getUserData));
 
-    return sortPlayers(data);
-  },
-  fetchPopular: async language => {
-    const encodedURI = window.encodeURI(
-      "https://api.github.com/search/repositories?q=stars:>1+language:" +
-        language +
-        "&sort=stars&order=desc&type=Repositories"
-    );
+  return sortPlayers(data);
+}
 
-    const res = await axios.get(encodedURI);
-    return res.data.items;
-  }
-};
+export async function fetchPopular(language) {
+  const encodedURI = window.encodeURI(
+    "https://api.github.com/search/repositories?q=stars:>1+language:" +
+      language +
+      "&sort=stars&order=desc&type=Repositories"
+  );
+
+  const res = await axios.get(encodedURI);
+  return res.data.items;
+}

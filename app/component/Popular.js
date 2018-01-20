@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import SelectLanguages from "./selectLanguages";
 import RepoGrid from './RepoGrid';
-import api from "../utils/api";
+import {fetchPopular} from "../utils/api";
 import Loading from './Loading'
 
 class Popular extends Component {
@@ -29,7 +29,7 @@ class Popular extends Component {
       repos: null
     });
 
-    const repos = await api.fetchPopular(lang);
+    const repos = await fetchPopular(lang);
     this.setState({ repos });
   }
 
